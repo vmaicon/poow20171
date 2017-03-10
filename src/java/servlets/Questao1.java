@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Laboratorio
  */
-@WebServlet(name = "HelloWorld", urlPatterns = {"/helloworld"})
-public class HelloWorld extends HttpServlet {
+@WebServlet(name = "Questao1", urlPatterns = {"/questao1"})
+public class Questao1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,12 +29,18 @@ public class HelloWorld extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request,
-            HttpServletResponse response)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String nome = request.getParameter("nome");
-        String senha = request.getParameter("senha");
+        int n = Integer.valueOf(request.getParameter("numero"));
+        int antecessor = n - 1;
+        int sucessor = n + 1;
+        int quadrado = n * n;
+        double raizQuadrada = Math.sqrt(n);
+        
+        if(n == 0)
+            response.sendRedirect("q01.jsp");
+        
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -42,17 +48,17 @@ public class HelloWorld extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HelloWorld</title>");            
+            out.println("<title>Questao1</title>");            
             out.println("</head>");
             out.println("<body>");
-            
-            if(nome.equals("user") && senha.equals("teste")){
-                response.sendRedirect("principal.jsp");
-            }else{
-                out.println("<h3>Usuário ou senha incorretos</h3>");
-            }
-            
-            
+            out.println("<h1>Resultado</h1>");
+            out.println("Antecessor: "+antecessor);
+            out.println("<br>Sucessor: "+sucessor);
+            out.println("<br>Quadrado: "+quadrado);
+            out.println("<br>Raiz Quadrada: "+raizQuadrada);
+            if(quadrado > 50)
+                out.println("<br>Quadrado é maior que 50, "
+                        + "multiplica-se o numero por 2: "+(n * 2));
             out.println("</body>");
             out.println("</html>");
         }

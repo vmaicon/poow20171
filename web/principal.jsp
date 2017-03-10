@@ -4,6 +4,8 @@
     Author     : Laboratorio
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="javafx.scene.chart.PieChart.Data"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,24 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <!--Comentario-->
+        <%--Comentario do jsp--%>
         <h1>Hello World!</h1>
+        <%--DECLARAÇÃO--%>
+        <%! 
+            int contaVisitantes = 0;
+        %>
+        
+        <%--SCRIPTLET --%>
+        <jsp:scriptlet>
+        </jsp:scriptlet>
+        <%
+            out.println("mais um jeito de código java<br>");
+            out.println("Visitante: "+(++contaVisitantes));
+        %>
+        <%--EXPRESSION --%>
+        <br>
+        
+        Data: <%= (new Date()).toInstant() %>
     </body>
 </html>
